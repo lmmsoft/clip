@@ -1,6 +1,6 @@
 # lmm333's Clip
 
-![cover.jpg](cover.jpg)
+<img src="./cover.jpg" width = "" height = "400" alt="lmm333's Clip" />
 
 互联网的链接失效得太快了，比如我有篇收集 [别人2014年终总结的博文](https://lmmsoft.github.io/2014review/) ，里面大部分链接都已经失效了，包括不限于个人网站的链接，著名社交网站的链接，传统博客网站的链接等。
 
