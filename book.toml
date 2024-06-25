@@ -1,14 +1,14 @@
 base_url = "https://clip-template.vercel.app"
 [book]
-title = "Owen's Clip"
-description = "Owen's Clip"
+title = "lmm333's Clip"
+description = "lmm333's Clip"
 src = "content"
 language = "zh"
-authors = ["Owen Young"]
+authors = ["Mingming Lou"]
 
 [output.html]
-git-repository-url = "https://github.com/theowenyoung/clip-template"
-edit-url-template = "https://github.com/theowenyoung/clip-template/edit/main/{path}"
+git-repository-url = "https://github.com/lmmsoft/clip"
+edit-url-template = "https://github.com/lmmsoft/clip/edit/main/{path}"
 
 [output.html.search]
 enable = false
@@ -19,8 +19,8 @@ enable = true
 [mail]
 # false will diasble mail sending
 enable = false
-from_email = "bot@owenyoung.com"
-from_name = "Owen"
+from_email = "lmm333@126.com"
+from_name = "lmm333"
 # you can set the mailjet contact list id here
 # mailjet_contact_list_id = "17669"
 # or directly set the to_email, seperated by comma
