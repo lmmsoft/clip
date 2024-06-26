@@ -10,6 +10,7 @@ authors = ["Mingming Lou"]
 git-repository-url = "https://github.com/lmmsoft/clip"
 edit-url-template = "https://github.com/lmmsoft/clip/edit/main/{path}"
 google-analytics = "G-NTYEFXKLE7"
+additional-js = ["ga.js"]
 
 [output.html.search]
 enable = false
