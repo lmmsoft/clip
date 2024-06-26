@@ -1,5 +1,6 @@
-# lmm333's Clip
+# lmm333's Clip 介绍
 
+## 背景
 <img src="./cover.jpg" width = "" height = "400" alt="lmm333's Clip" />
 
 互联网的链接失效得太快了，比如我有篇收集 [别人2014年终总结的博文](https://lmmsoft.github.io/2014review/) ，里面大部分链接都已经失效了，包括不限于个人网站的链接，著名社交网站的链接，传统博客网站的链接等。
@@ -11,6 +12,26 @@
 为了解决这个问题，我一直想有个地方，可以把我收藏的内容**自动公开分享**出来，这样不仅可以让我自己看到，也可以让别人看到，提高内容的生命周期。
 
 受限于内容管控机制和审查环境，国服是不可能有这样的产品了，外服也没遇到合适的，直到我看到了[DemoChen's Clip](https://clip.demochen.com/)，并找到了[这个项目](https://github.com/theowenyoung/clip-template)。
+
+## changelog
+
+以下是我的大致创建流程，详细步骤见下面原始文档，很详细
+
+### 2024-06-26
+- 安装
+  - 用 `clip` 作为项目名，fork 了 [clip-template](https://github.com/theowenyoung/clip-template)
+  - `git clone` 项目到本机的 `~/Downloads` 目录 (放下载目录是为了方便 Markdownload 扩展保存网页到本地)
+  - `make install` 安装依赖（这一步没有成功，特别慢，成功后可以本地预览，没成功也不要紧）
+- 修改配置
+  - 修改封面图 `cover.jpg` 和 `templates/cover.jpg` 和 `templates/archive/cover.jpg`，封面图使用 (O'RLY 封面)[https://orly.nanmu.me/ ] 创建
+  - 修改 `book.toml` [配置文件](https://github.com/lmmsoft/clip/commit/87a5fd1b0a7e1f9405f52d64c2b92bf07fc51756)，修改了网站名称，网址，作者以及 Git Repo 相关配置等等
+  - 修改 `README.md` [文件](https://github.com/lmmsoft/clip/commit/fa475b365ea39641cdf30b0d78678a4fc31dc8d2)，作为网站的首页，添加了封面图，修改了标题
+- 安装插件
+  - Chrome 里安装了 [Markdownload 扩展](https://github.com/deathau/markdownload)，其他浏览器参考[源码](https://github.com/deathau/markdownload) 并导入 theowenyoung 的 [配置文件](https://raw.githubusercontent.com/theowenyoung/clip-template/main/markdownload-config.json), 我没有使用 theowenyoung 修改过的插件，似乎也没问题
+  - 此时可以使用 Markdownload 插件保存文章，点击 Download 按钮，文件会自动按照日期保存到 `~/Downloads/clip/content/2024/06/26/{slug}/index.md`，如果有图片，图片也会保存到该目录下，直接 `git commit` 并推送到远程仓库即可
+- vercle 部署
+  - 在 [vercel](https://vercel.com/dashboard) 新建项目，选择从 Github 中导入项目，不需要做额外配置，首次部署完成后，可以看到预览的[网址](https://clip-omega.vercel.app/)
+  - 在 Vercel 的后台，默认域名处，可以添加自定义域名，我添加了 CNAME [clip.lmm333.com](https://clip.lmm333.com/) , 这一步需要在自己域名的管理后台操作，需要等待域名解析变更，我等了约1小时吧
 
 # 以下是原始项目的 readme.md
 这是 <https://clip.owenyoung.com/> 网站的模版，里面收集了我觉得值得收藏的文章全文。本来是个人在使用，但是有朋友也想复制这个流程，所以我就抽出了这个干净的模板，让想用这套流程的朋友方便一点～
