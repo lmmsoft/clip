@@ -13,6 +13,10 @@
 
 受限于内容管控机制和审查环境，国服是不可能有这样的产品了，外服也没遇到合适的，直到我看到了[DemoChen's Clip](https://clip.demochen.com/)，并找到了[这个项目](https://github.com/theowenyoung/clip-template)。
 
+## 目录
+
+<!-- Table of Content-->
+
 ## changelog
 
 以下是我的大致创建流程，详细步骤见下面原始文档，很详细
@@ -34,6 +38,8 @@
   - 在 Vercel 的后台，默认域名处，可以添加自定义域名，我添加了 CNAME [clip.lmm333.com](https://clip.lmm333.com/) , 这一步需要在自己域名的管理后台操作，需要等待域名解析变更，我等了约1小时吧
 - rss feed
   - vercel 部署时会自动生成 rss feed, 我的链接是 [clip.lmm333.com/feed.xml](https://clip.lmm333.com/feed.xml)
+- 参考文档
+  - 网站基于开源项目 [mdBook](https://github.com/rust-lang/mdBook) [文档](https://rust-lang.github.io/mdBook/)
 
 # 以下是原始项目的 readme.md
 这是 <https://clip.owenyoung.com/> 网站的模版，里面收集了我觉得值得收藏的文章全文。本来是个人在使用，但是有朋友也想复制这个流程，所以我就抽出了这个干净的模板，让想用这套流程的朋友方便一点～

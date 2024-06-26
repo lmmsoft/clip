@@ -2,6 +2,7 @@
 import * as fs from "https://deno.land/std@0.159.0/fs/mod.ts";
 import { extract } from "https://deno.land/std@0.159.0/encoding/front_matter.ts";
 import { DateTimeFormatter } from "https://deno.land/std@0.159.0/datetime/formatter.ts";
+import { copy } from "https://deno.land/std@0.180.0/fs/copy.ts";
 import * as path from "https://deno.land/std@0.159.0/path/mod.ts";
 import { Feed, FeedOptions } from "https://esm.sh/feed@4.2.2";
 import {
@@ -22,7 +23,7 @@ import { gfm } from "https://esm.sh/micromark-extension-gfm@2.0.1";
 import {
   gfmFromMarkdown,
   gfmToMarkdown,
-} from "https://esm.sh/mdast-util-gfm@2.0.1";
+} from "https://esm.sh/mdast-util-gfm@2.0.2";
 // import { default as kebabCase } from "https://jspm.dev/lodash@4.17.21/kebabCase";
 import { toMarkdown } from "https://esm.sh/mdast-util-to-markdown@1.5.0";
 import { fromMarkdown } from "https://esm.sh/mdast-util-from-markdown@1.3.0";
@@ -391,6 +392,7 @@ async function main() {
     // write to file
     const targetMarkdownFiles: Record<string, string> = {};
     const allFiles: string[] = [];
+    let allPosts: Post[] = [];
     for (const chapter of chapters) {
       let markdownContent = `# ${chapter.title}\n\n`;
       // if title is not the same as original title
@@ -400,7 +402,9 @@ async function main() {
         if (title && extra && extra.original_title) {
           // is same
           if (title !== extra.original_title) {
-            markdownContent += `原文标题：**${extra.original_title}**\n\n`;
+            // markdownContent += `原文标题：**${extra.original_title}**\n\n`;
+            markdownContent += `\n\n原文链接：<a target = "blank" href="${extra.source}"> ${extra.source} </a>\n\n`;
+
           }
         }
       }
@@ -560,18 +564,16 @@ async function main() {
 
     let summary = `# Summary\n\n`;
     if (book.introduction) {
-      summary += `[${book.introduction.title}](${
-        formatMarkdownPath(book.introduction.path)
-      })\n\n`;
+      summary += `[${book.introduction.title}](${formatMarkdownPath(book.introduction.path)
+        })\n\n`;
     }
     for (const section of book.summary) {
       summary += `- [${section.title}](${formatMarkdownPath(section.path)})\n`;
 
       if (section.subSections) {
         for (const subSection of section.subSections) {
-          summary += `  - [${subSection.title}](${
-            formatMarkdownPath(subSection.path)
-          })\n`;
+          summary += `  - [${subSection.title}](${formatMarkdownPath(subSection.path)
+            })\n`;
         }
       }
     }
@@ -629,6 +631,7 @@ async function main() {
         "README.md",
       );
       await fs.ensureDir(path.dirname(assetDistPath));
+
       await Deno.copyFile(rootReadmePath, assetDistPath);
     }
 
@@ -651,9 +654,8 @@ async function main() {
 
           dayNoteContent += `- [${subSection.title}](${subSection.source})`;
           if (subSection.title !== subSection.originalTitle) {
-            dayNoteContent += ` ([双语机翻译文](${baseUrl}/${
-              subSection.path.slice(0, -8)
-            }))`;
+            dayNoteContent += ` ([双语机翻译文](${baseUrl}/${subSection.path.slice(0, -8)
+              }))`;
           }
           dayNoteContent += "\n";
         }
@@ -699,12 +701,54 @@ ${body}
       }
     }
 
+    // add table of content to index
+    const indexContent = await Deno.readTextFile(
+      path.join(
+        bookSourceFileDist,
+        bookConfig.book.src as string,
+        "README.md",
+      ),
+    );
+
+    if (indexContent.includes("<!-- Table of Content-->")) {
+      // replace it
+      let tableOfContent = ``;
+
+      for (const chapter of allChapters) {
+        const urlPathname = chapter.relativePath.replace(/^content\//, "");
+        tableOfContent +=
+          `- ${chapter.day} [${chapter.title}](${urlPathname})\n`;
+      }
+      // replace it with table of content
+      const newContent = indexContent.replace(
+        "<!-- Table of Content-->",
+        tableOfContent,
+      );
+      await Deno.writeTextFile(
+        path.join(
+          bookSourceFileDist,
+          bookConfig.book.src as string,
+          "README.md",
+        ),
+        newContent,
+      );
+    }
+
     // write book.toml
     const bookToml = stringify(
       book.config as unknown as Record<string, unknown>,
     );
     const bookTomlPath = path.join(bookSourceFileDist, "book.toml");
     await Deno.writeTextFile(bookTomlPath, bookToml);
+
+    // copy static file to dist
+
+    const staticPath = path.join(workDir, "static");
+    const staticDistPath = path.join(bookSourceFileDist);
+
+    await copy(staticPath, staticDistPath, {
+      overwrite: true,
+    });
     console.log(`build book ${key} source files success`);
     const p = Deno.run({
       cmd: ["../../bin/mdbook", "build"],
@@ -729,8 +773,7 @@ ${body}
       await fs.ensureDir(distDir);
       const epubNewPath = path.join(
         distDir,
-        `${
-          slug(originalBookConfig.book.title as string)
+        `${slug(originalBookConfig.book.title as string)
         }-${keyType}-${key}.epub`,
       );
       await Deno.copyFile(epubPath, epubNewPath);
@@ -749,8 +792,7 @@ ${body}
           "-q",
           path.join(
             distDir,
-            `${
-              slug(originalBookConfig.book.title as string)
+            `${slug(originalBookConfig.book.title as string)
             }-${keyType}-${key}-html.zip`,
           ),
           "./",
