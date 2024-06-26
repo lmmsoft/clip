@@ -38,6 +38,9 @@
   - 在 Vercel 的后台，默认域名处，可以添加自定义域名，我添加了 CNAME [clip.lmm333.com](https://clip.lmm333.com/) , 这一步需要在自己域名的管理后台操作，需要等待域名解析变更，我等了约1小时吧
 - rss feed
   - vercel 部署时会自动生成 rss feed, 我的链接是 [clip.lmm333.com/feed.xml](https://clip.lmm333.com/feed.xml)
+- 更多功能
+  - 自动生成目录 参考 https://github.com/helloChenLei/clip 项目，更新 `cli.ts` 文件，添加 `<!-- Table of Content-->`
+  - 增加 GA: 官方的 book.toml 里的 GA 配置不支持 GA4, 建议在 head.hbs 里自定义， theme 目录一开始不生效，换了 `cli.ts` 文件后，放到 `static` 里生效
 - 参考文档
   - 网站基于开源项目 [mdBook](https://github.com/rust-lang/mdBook) [文档](https://rust-lang.github.io/mdBook/)
 
