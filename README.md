@@ -32,6 +32,8 @@
 - vercle 部署
   - 在 [vercel](https://vercel.com/dashboard) 新建项目，选择从 Github 中导入项目，不需要做额外配置，首次部署完成后，可以看到预览的[网址](https://clip-omega.vercel.app/)
   - 在 Vercel 的后台，默认域名处，可以添加自定义域名，我添加了 CNAME [clip.lmm333.com](https://clip.lmm333.com/) , 这一步需要在自己域名的管理后台操作，需要等待域名解析变更，我等了约1小时吧
+- rss feed
+  - vercel 部署时会自动生成 rss feed, 我的链接是 [clip.lmm333.com/feed.xml](https://clip.lmm333.com/feed.xml)
 
 # 以下是原始项目的 readme.md
 这是 <https://clip.owenyoung.com/> 网站的模版，里面收集了我觉得值得收藏的文章全文。本来是个人在使用，但是有朋友也想复制这个流程，所以我就抽出了这个干净的模板，让想用这套流程的朋友方便一点～
