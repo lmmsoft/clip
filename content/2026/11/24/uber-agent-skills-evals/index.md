@@ -18,7 +18,7 @@ extra:
 
 **出处**　Uber Engineering，Andrew Mager、Jason Varbedain、Uday Kiran Medisetty，2026 年 11 月 23 日。本文为全文级中文译述，覆盖原文全部章节、数据与图表，非逐句对照翻译；封面与图 1–16 引用 Uber 原图，图内保留英文；文中数据均来自 Uber 内部，迁移到其他组织需重新测量。
 
-[Uber 英文原文](https://www.uber.com/us/en/blog/optimizing-ubers-agent-skills/)
+[Uber 英文原文](https://www.uber.com/us/en/blog/optimizing-ubers-agent-skills/) · [全文翻译版](/2026/11/24/uber-agent-skills-evals-translation/index.html)
 
 ![封面｜Agent Skill 的生命周期：构建、运行、度量、评估、改进，并回传指标](https://tb-static.uber.com/prod/udam-assets/b29beefb-8911-453c-9ba8-48a35e635241.png)
 

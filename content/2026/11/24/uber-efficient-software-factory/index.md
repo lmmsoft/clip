@@ -18,7 +18,7 @@ extra:
 
 **出处**　Uber Engineering，Uday Kiran Medisetty，2026 年 8 月 27 日。本文为全文级中文译述，覆盖原文全部章节、数据与图表，非逐句对照翻译；封面与图 1–12 引用 Uber 原图，图内保留英文。
 
-[Uber 英文原文](https://www.uber.com/us/en/blog/efficient-software-factory/)
+[Uber 英文原文](https://www.uber.com/us/en/blog/efficient-software-factory/) · [全文翻译版](/2026/11/24/uber-efficient-software-factory-translation/index.html)
 
 ![封面｜AI 开支的构成](https://tb-static.uber.com/prod/udam-assets/08fda4fe-4704-44ec-9cc6-963c4f9acfc3.png)
 
