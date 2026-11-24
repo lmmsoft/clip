@@ -191,9 +191,11 @@ async function main() {
   const workDir = new URL(".", import.meta.url).pathname;
   const bookToml = await Deno.readTextFile(`${workDir}/book.toml`);
   const originalBookConfig = parseTOML(bookToml) as unknown as BookConfig;
-  let baseUrl = "";
+  // CLIP_BASE_URL lets one source tree publish to several hosts
+  // (clip.lmm333.com on Vercel, lmmsoft.github.io/clip on GitHub Pages).
+  let baseUrl = Deno.env.get("CLIP_BASE_URL") || "";
   if (
-    originalBookConfig.base_url
+    !baseUrl && originalBookConfig.base_url
   ) {
     baseUrl = originalBookConfig.base_url;
   }
@@ -817,8 +819,8 @@ ${body}
       const feedParams: FeedOptions = {
         title: originalBookConfig.book.title as string,
         description: originalBookConfig.book.description as string,
-        id: originalBookConfig.base_url,
-        link: originalBookConfig.base_url,
+        id: baseUrl,
+        link: baseUrl,
         language: originalBookConfig.book.language as string, // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
         generator: "clip", // optional, default = 'Feed for Node.js'
         copyright: "",
@@ -830,7 +832,7 @@ ${body}
       ) {
         feedParams.author = {
           name: authors[0],
-          link: originalBookConfig.base_url,
+          link: baseUrl,
         };
       }
 
@@ -838,7 +840,7 @@ ${body}
 
       const faviconPath = path.join(htmlPath, "favicon.png");
       if (fs.existsSync(faviconPath)) {
-        feedParams.favicon = `${originalBookConfig.base_url}/favicon.png`;
+        feedParams.favicon = `${baseUrl}/favicon.png`;
       }
       const feed = new Feed(feedParams);
       allChapters.slice(0, 25).forEach((post) => {
