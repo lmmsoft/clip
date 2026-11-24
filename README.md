@@ -22,14 +22,10 @@
 以下是我的大致创建流程，详细步骤见下面原始文档，很详细
 
 ### 2026-11-24
-- 重新启用本站，并新增 4 篇 AI 研发效能方向的 Uber Engineering 文章中文版：
-  - [Uber 如何高效运营软件工厂｜中文译述](/2026/11/24/uber-efficient-software-factory/index.html)，另有[全文翻译版](/2026/11/24/uber-efficient-software-factory-translation/index.html)
-  - [Uber 如何每月评估百万次 Agent Skill 调用｜中文译述](/2026/11/24/uber-agent-skills-evals/index.html)，另有[全文翻译版](/2026/11/24/uber-agent-skills-evals-translation/index.html)
-- 双平台发布：
-  - 新增 [GitHub Pages 部署工作流](https://github.com/lmmsoft/clip/blob/main/.github/workflows/deploy-pages.yml)，地址为 [lmmsoft.github.io/clip](https://lmmsoft.github.io/clip/)，与 Vercel 的 [clip.lmm333.com](https://clip.lmm333.com/) 同时发布
-  - 修复 Vercel 部署失败：Node.js 20.x 已停用，通过 `.nvmrc` 和 `package.json` engines 指定 Node 26
+- 复站，恢复更新
+- 新增 [GitHub Pages 部署工作流](https://github.com/lmmsoft/clip/blob/main/.github/workflows/deploy-pages.yml)，地址为 [lmmsoft.github.io/clip](https://lmmsoft.github.io/clip/)，与 Vercel 的 [clip.lmm333.com](https://clip.lmm333.com/) 同时发布
+- 修复 Vercel 部署失败：Node.js 20.x 已停用，通过 `.nvmrc` 和 `package.json` engines 指定 Node 26
 - 修正 `book.toml` 的 `base_url`（原来是模板默认域名，导致 feed 链接指向错误），并支持 `CLIP_BASE_URL` 环境变量按部署目标覆盖
-- 新增 `translate-to-clip` 项目技能（在 kb 仓库），外链文章的中文译述/翻译、双平台发布流程化
 
 ### 2024-06-26
 - 安装
